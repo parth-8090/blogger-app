@@ -4,8 +4,10 @@ import { BookOpen, LogOut, LayoutDashboard, User } from 'lucide-react';
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const isAdmin = localStorage.getItem('adminToken');
-  const isUser = localStorage.getItem('userToken');
+  const adminToken = localStorage.getItem('adminToken');
+  const isAdmin = adminToken && adminToken !== 'undefined' && adminToken !== 'null';
+  const userToken = localStorage.getItem('userToken');
+  const isUser = userToken && userToken !== 'undefined' && userToken !== 'null';
 
   const adminEmail = localStorage.getItem('adminEmail')?.split('@')[0];
   const userEmail = localStorage.getItem('userEmail')?.split('@')[0];
