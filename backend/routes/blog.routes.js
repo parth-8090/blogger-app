@@ -5,22 +5,8 @@ const authMiddleware = require("../middlewares/auth.middleware");
 const multer = require("multer");
 const path = require("path");
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    
-    const uploadDir = process.env.VERCEL ? "/tmp" : path.join(__dirname, "../uploads");
-    const fs = require('fs');
-    if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir, { recursive: true });
-    }
-    cb(null, uploadDir);
-  
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
-  }
-});
-const upload = multer({ storage });
+const storage = multer.memoryStorage();
+const upload = multer({ storage, limits: { fileSize: 10 * 1024 * 1024 } }); // 10MB limit for Base64
 
 router.post("/", authMiddleware.authAdmin, upload.single("media"), blogController.createBlog);
 router.put("/:id", authMiddleware.authAdmin, upload.single("media"), blogController.updateBlog);
