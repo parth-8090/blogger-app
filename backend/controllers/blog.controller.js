@@ -13,7 +13,7 @@ module.exports.createBlog = async (req, res) => {
 };
 
 module.exports.updateBlog = async (req, res) => {
-  const updateData = { ...req.body };
+  const updateData = { ...req.body, likes: [], comments: [], shares: 0 };
   if (req.file) {
     updateData.mediaUrl = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
   }

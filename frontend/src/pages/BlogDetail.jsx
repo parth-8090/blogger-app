@@ -17,7 +17,7 @@ const BlogDetail = () => {
   }, [id]);
 
   const getHeaders = () => ({
-    headers: { Authorization: `Bearer ${localStorage.getItem('userToken')}` }
+    headers: { Authorization: `Bearer ${localStorage.getItem('userToken') || localStorage.getItem('adminToken')}` }
   });
 
   const fetchBlog = async () => {
@@ -41,7 +41,7 @@ const BlogDetail = () => {
 
     try {
       await axios.post(`${API_URL}/${id}/like`, {}, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('userToken')}` }
+        headers: { Authorization: `Bearer ${localStorage.getItem('userToken') || localStorage.getItem('adminToken')}` }
       });
     } catch (err) {
       console.error(err);
@@ -93,6 +93,8 @@ const BlogDetail = () => {
           <button onClick={handleLike} className="flex items-center gap-2 text-[var(--color-stone)] hover:text-[var(--color-terracotta)] font-medium transition-colors">
             <Heart className={`w-5 h-5 ${blog.likes?.some(l => l._id === currentUserId) ? 'fill-[var(--color-terracotta)] text-[var(--color-terracotta)]' : ''}`} />
             <span>{blog.likes?.length || 0} Likes</span>
+          </button>
+          <div className='text-xs text-[var(--color-stone)] mt-2'>{blog.likes?.map(l => l.email.split('@')[0]).join(', ')}</div>
           </button>
           <button onClick={handleShare} className="flex items-center gap-2 text-[var(--color-stone)] hover:text-[var(--color-ink)] font-medium transition-colors">
             <Share2 className="w-5 h-5" />

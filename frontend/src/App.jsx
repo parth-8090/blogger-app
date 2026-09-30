@@ -12,6 +12,9 @@ import Landing from './pages/Landing';
 
 function App() {
   const ProtectedUserRoute = ({ children }) => {
+    return (localStorage.getItem("userToken") || localStorage.getItem("adminToken")) ? children : <Navigate to="/" />;
+  };
+  const _oldProtectedUserRoute = ({ children }) => {
     return localStorage.getItem('userToken') ? children : <Navigate to="/" />;
   };
 

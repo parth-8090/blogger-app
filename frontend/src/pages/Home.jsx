@@ -18,7 +18,7 @@ const Home = () => {
   const fetchBlogs = async () => {
     try {
       const res = await axios.get(API_URL, { 
-        headers: { Authorization: `Bearer ${localStorage.getItem('userToken')}` } 
+        headers: { Authorization: `Bearer ${localStorage.getItem('userToken') || localStorage.getItem('adminToken')}` } 
       });
       setBlogs(res.data);
       setLoading(false);
@@ -46,7 +46,7 @@ const Home = () => {
 
     try {
       await axios.post(`${API_URL}/${id}/like`, {}, { 
-        headers: { Authorization: `Bearer ${localStorage.getItem('userToken')}` } 
+        headers: { Authorization: `Bearer ${localStorage.getItem('userToken') || localStorage.getItem('adminToken')}` } 
       });
     } catch (err) {
       console.error(err);
@@ -75,6 +75,7 @@ const Home = () => {
                 <Heart className={`w-5 h-5 ${blog.likes?.some(l => l._id === currentUserId) ? 'fill-[var(--color-terracotta)] text-[var(--color-terracotta)]' : ''}`} />
                 <span>{blog.likes?.length || 0}</span>
               </button>
+              <span className='text-xs opacity-60 ml-2 hidden sm:inline'>{blog.likes?.slice(0,2).map(l => l.email?.split('@')[0]).join(', ')}{blog.likes?.length > 2 ? '...' : ''}</span>
               <div className="flex items-center gap-2 hover:text-[var(--color-ink)] transition-colors">
                 <MessageCircle className="w-5 h-5" />
                 <span>{blog.comments?.length || 0}</span>
