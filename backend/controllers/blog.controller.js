@@ -5,7 +5,7 @@ module.exports.createBlog = async (req, res) => {
   let mediaUrl = req.body.mediaUrl;
   
   if (req.file) {
-    mediaUrl = `http://localhost:4000/uploads/${req.file.filename}`;
+    mediaUrl = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
   }
 
   const blog = await blogModel.create({ title, mediaUrl, description });
@@ -15,7 +15,7 @@ module.exports.createBlog = async (req, res) => {
 module.exports.updateBlog = async (req, res) => {
   const updateData = { ...req.body };
   if (req.file) {
-    updateData.mediaUrl = `http://localhost:4000/uploads/${req.file.filename}`;
+    updateData.mediaUrl = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
   }
 
   const blog = await blogModel.findByIdAndUpdate(req.params.id, updateData, { new: true });
