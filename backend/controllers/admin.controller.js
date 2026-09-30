@@ -27,7 +27,7 @@ module.exports.registerAdmin = async (req, res, next) => {
   res.status(201).json({ token, admin });
 };
 
-module.exports.loginAdmin = async (req, res, next) => {
+module.exports.loginAdmin = async (req, res, next) => { try {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
@@ -48,6 +48,7 @@ module.exports.loginAdmin = async (req, res, next) => {
   const token = admin.generateToken();
   res.cookie("token", token);
   res.status(200).json({ token, admin });
+  } catch (err) { res.status(500).json({ error: err.message, stack: err.stack }); }
 };
 
 module.exports.getAdminProfile = async (req, res, next) => {
