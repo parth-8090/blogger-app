@@ -29,12 +29,23 @@ const BlogDetail = () => {
     }
   };
 
-  const handleLike = async () => {
+    const handleLike = async () => {
+    // Optimistic UI Update
+    const isLiked = blog.likes?.some(l => l._id === currentUserId);
+    setBlog({
+      ...blog,
+      likes: isLiked 
+        ? blog.likes.filter(l => l._id !== currentUserId) 
+        : [...(blog.likes || []), { _id: currentUserId }]
+    });
+
     try {
-      await axios.post(`${API_URL}/${id}/like`, {}, getHeaders());
-      fetchBlog();
+      await axios.post(`${API_URL}/${id}/like`, {}, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('userToken')}` }
+      });
     } catch (err) {
       console.error(err);
+      fetchBlog(); // Revert on failure
     }
   };
 

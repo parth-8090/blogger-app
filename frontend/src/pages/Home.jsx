@@ -28,15 +28,29 @@ const Home = () => {
     }
   };
 
-  const handleLike = async (e, id) => {
+    const handleLike = async (e, id) => {
     e.preventDefault();
+    // Optimistic UI Update
+    setBlogs(blogs.map(blog => {
+      if (blog._id === id) {
+        const isLiked = blog.likes?.some(l => l._id === currentUserId);
+        return {
+          ...blog,
+          likes: isLiked 
+            ? blog.likes.filter(l => l._id !== currentUserId) 
+            : [...(blog.likes || []), { _id: currentUserId }]
+        };
+      }
+      return blog;
+    }));
+
     try {
       await axios.post(`${API_URL}/${id}/like`, {}, { 
         headers: { Authorization: `Bearer ${localStorage.getItem('userToken')}` } 
       });
-      fetchBlogs();
     } catch (err) {
       console.error(err);
+      fetchBlogs(); // Revert on failure
     }
   };
 
