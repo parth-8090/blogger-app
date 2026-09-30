@@ -49,12 +49,12 @@ const Home = () => {
       {blogs.map((blog) => (
         <Link key={blog._id} to={`/blog/${blog._id}`} className="block bg-[var(--color-card)] rounded-xl shadow-sm border border-[var(--color-divider)] overflow-hidden hover:shadow-md transition-shadow group">
           {blog.mediaUrl && (
-            <div className="h-64 w-full overflow-hidden border-b border-[var(--color-divider)]">
+            <div className="h-48 md:h-64 w-full overflow-hidden border-b border-[var(--color-divider)]">
               <MediaRenderer url={blog.mediaUrl} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>
           )}
-          <div className="p-8">
-            <h2 className="text-3xl font-bold text-[var(--color-ink)] mb-4">{blog.title}</h2>
+          <div className="p-4 md:p-8">
+            <h2 className="text-xl md:text-3xl font-bold text-[var(--color-ink)] mb-4">{blog.title}</h2>
             <p className="text-[var(--color-stone)] line-clamp-3 mb-6 font-serif">{blog.description}</p>
             <div className="flex items-center gap-6 text-[var(--color-stone)] text-sm font-medium">
               <button onClick={(e) => handleLike(e, blog._id)} className="flex items-center gap-2 hover:text-[var(--color-terracotta)] transition-colors">

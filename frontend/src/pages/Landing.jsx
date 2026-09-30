@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Landing = () => {
   return (
-    <div className="max-w-3xl mx-auto mt-20 flex flex-col md:flex-row gap-8">
+    <div className="max-w-3xl mx-auto mt-10 md:mt-20 flex flex-col md:flex-row gap-8 p-4 md:p-0">
       <div className="flex-1 bg-[var(--color-card)] border border-[var(--color-divider)] p-10 flex flex-col items-center text-center">
         <h2 className="text-3xl font-bold mb-4">Readers</h2>
         <p className="text-[var(--color-stone)] mb-8">Access curated essays, leave thoughts, and save favorites.</p>

@@ -16,9 +16,9 @@ const Navbar = () => {
 
   return (
     <nav className="bg-[var(--color-canvas)] border-b border-[var(--color-divider)]">
-      <div className="container mx-auto px-4 max-w-5xl h-24 flex items-center justify-between">
+      <div className="container mx-auto px-4 max-w-5xl py-4 flex flex-row items-center justify-between">
         <Link to="/" className="flex items-center hover:opacity-80 transition-opacity">
-          <div className="w-48 h-12">
+          <div className="w-32 h-8 md:w-48 md:h-12">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 120" width="100%" height="100%">
               <g transform="translate(15, 18)">
                 <rect x="10" y="10" width="64" height="64" rx="14" fill="#1C1917"/>
@@ -34,7 +34,7 @@ const Navbar = () => {
             </svg>
           </div>
         </Link>
-        <div className="flex items-center gap-6">
+        <div className="flex flex-wrap items-center gap-3 md:gap-6">
           {token && (
             <>
               <Link to="/admin" className="text-sm font-medium text-[var(--color-stone)] hover:text-[var(--color-ink)] transition-colors">

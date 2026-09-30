@@ -14,8 +14,8 @@ connectToDb();
 app.use(cors({ origin: "*", credentials: true }));
 app.use(express.json({ limit: "10kb" })); // Limit body size to prevent DOS
 app.use(helmet({ crossOriginResourcePolicy: false })); // Set security HTTP headers
-app.use(mongoSanitize()); // Prevent NoSQL injection
-app.use(hpp()); // Prevent HTTP Parameter Pollution
+
+
 
 // Rate limiting to prevent brute force attacks
 const limiter = rateLimit({ windowMs: 10 * 60 * 1000, max: 150, message: "Too many requests from this IP, please try again in 10 minutes" });
