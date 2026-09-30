@@ -23,7 +23,8 @@ app.use("/users/login", limiter);
 app.use("/admins/login", limiter);
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+const uploadDir = process.env.VERCEL ? "/tmp" : path.join(__dirname, "uploads");
+app.use("/uploads", express.static(uploadDir));
 
 const adminRoutes = require("./routes/admin.routes");
 const blogRoutes = require("./routes/blog.routes");
