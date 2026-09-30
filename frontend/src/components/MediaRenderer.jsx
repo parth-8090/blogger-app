@@ -2,7 +2,7 @@ import React from 'react';
 
 const MediaRenderer = ({ url, className }) => {
   if (!url) return null;
-  const isVideo = url.match(/\.(mp4|webm|ogg)$/i);
+  const isVideo = url.match(/\.(mp4|webm|ogg)$/i) || url.startsWith("data:video");
   
   if (isVideo) {
     return (
