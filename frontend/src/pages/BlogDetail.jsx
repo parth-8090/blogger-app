@@ -94,7 +94,7 @@ const BlogDetail = () => {
             <Heart className={`w-5 h-5 ${blog.likes?.some(l => l._id === currentUserId) ? 'fill-[var(--color-terracotta)] text-[var(--color-terracotta)]' : ''}`} />
             <span>{blog.likes?.length || 0} Likes</span>
           </button>
-          <div className='text-xs text-[var(--color-stone)] mt-2'>{blog.likes?.map(l => l.email.split('@')[0]).join(', ')}</div>
+          
           <button onClick={handleShare} className="flex items-center gap-2 text-[var(--color-stone)] hover:text-[var(--color-ink)] font-medium transition-colors">
             <Share2 className="w-5 h-5" />
             <span>{blog.shares} Shares</span>
