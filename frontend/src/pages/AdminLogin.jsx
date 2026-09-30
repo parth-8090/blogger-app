@@ -13,6 +13,7 @@ const AdminLogin = () => {
     try {
       const res = await axios.post((import.meta.env.VITE_API_URL || 'http://localhost:4000') + '/admins/login', { email, password });
       localStorage.setItem('adminToken', res.data.token);
+      localStorage.setItem('adminEmail', res.data.admin.email);
       navigate('/admin');
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');

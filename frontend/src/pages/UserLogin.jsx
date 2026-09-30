@@ -14,6 +14,7 @@ const UserLogin = () => {
       const res = await axios.post((import.meta.env.VITE_API_URL || 'http://localhost:4000') + '/users/login', { email, password });
       localStorage.setItem('userToken', res.data.token);
       localStorage.setItem('userId', res.data.user.id);
+      localStorage.setItem('userEmail', res.data.user.email);
       navigate('/blogs');
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');
