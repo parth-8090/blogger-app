@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+
+# Production Build
+frontend/dist/
+backend/dist/
+build/
+
+# Environment Variables (CRITICAL SECURITY)
+.env
+.env.local
+.env.development
+.env.production
+frontend/.env
+backend/.env
+*.pem
+*.key
+*.cert
+
+# User Uploads (Ignored for Vercel)
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# System/IDE Files
+.DS_Store
+.idea/
+.vscode/
+*.log
+npm-debug.log*
+
+# Next/Vercel Caches
+.vercel/
+.next/
