@@ -68,7 +68,7 @@ const Home = () => {
             </div>
           )}
           <div className="p-4 md:p-8">
-            <h2 className="text-xl md:text-3xl font-bold text-[var(--color-ink)] mb-4">{blog.title}</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-ink)] mb-4">{blog.title}</h2>
             <p className="text-[var(--color-stone)] line-clamp-3 mb-6 font-serif">{blog.description}</p>
             <div className="flex items-center gap-6 text-[var(--color-stone)] text-sm font-medium">
               <button onClick={(e) => handleLike(e, blog._id)} className="flex items-center gap-2 hover:text-[var(--color-terracotta)] transition-colors">

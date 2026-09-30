@@ -83,8 +83,8 @@ const BlogDetail = () => {
           <MediaRenderer url={blog.mediaUrl} className="w-full h-full object-cover" />
         </div>
       )}
-      <div className="p-10">
-        <h1 className="text-2xl md:text-4xl font-bold text-[var(--color-ink)] mb-6">{blog.title}</h1>
+      <div className="p-5 md:p-10">
+        <h1 className="text-3xl md:text-5xl font-bold text-[var(--color-ink)] mb-6">{blog.title}</h1>
         <div className="prose max-w-none text-[var(--color-ink)] font-serif text-lg leading-relaxed mb-10 whitespace-pre-wrap">
           {blog.description}
         </div>
